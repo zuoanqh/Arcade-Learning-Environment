@@ -35,32 +35,36 @@ std::string action_to_string(Action a) {
         ,"PLAYER_A_UPLEFTFIRE"    
         ,"PLAYER_A_DOWNRIGHTFIRE"
         ,"PLAYER_A_DOWNLEFTFIRE"
-        ,"PLAYER_B_NOOP"          
-        ,"PLAYER_B_FIRE"          
-        ,"PLAYER_B_UP"            
-        ,"PLAYER_B_RIGHT"         
-        ,"PLAYER_B_LEFT"          
-        ,"PLAYER_B_DOWN"          
-        ,"PLAYER_B_UPRIGHT"       
-        ,"PLAYER_B_UPLEFT"        
-        ,"PLAYER_B_DOWNRIGHT"     
-        ,"PLAYER_B_DOWNLEFT"      
-        ,"PLAYER_B_UPFIRE"        
-        ,"PLAYER_B_RIGHTFIRE"     
-        ,"PLAYER_B_LEFTFIRE"      
-        ,"PLAYER_B_DOWNFIRE"      
-        ,"PLAYER_B_UPRIGHTFIRE"   
-        ,"PLAYER_B_UPLEFTFIRE"    
+        ,"PLAYER_A_GRIP_TRIGGER"
+        ,"PLAYER_A_GRIP_BOOSTER"
+        ,"PLAYER_B_NOOP" // 20
+        ,"PLAYER_B_FIRE"
+        ,"PLAYER_B_UP"
+        ,"PLAYER_B_RIGHT"
+        ,"PLAYER_B_LEFT"
+        ,"PLAYER_B_DOWN"
+        ,"PLAYER_B_UPRIGHT"
+        ,"PLAYER_B_UPLEFT"
+        ,"PLAYER_B_DOWNRIGHT"
+        ,"PLAYER_B_DOWNLEFT"
+        ,"PLAYER_B_UPFIRE"
+        ,"PLAYER_B_RIGHTFIRE"
+        ,"PLAYER_B_LEFTFIRE"
+        ,"PLAYER_B_DOWNFIRE"
+        ,"PLAYER_B_UPRIGHTFIRE"
+        ,"PLAYER_B_UPLEFTFIRE"
         ,"PLAYER_B_DOWNRIGHTFIRE"
         ,"PLAYER_B_DOWNLEFTFIRE"
-        ,"__invalid__" // 36
-        ,"__invalid__" // 37
-        ,"__invalid__" // 38
-        ,"__invalid__" // 39
+        ,"PLAYER_B_GRIP_TRIGGER"
+        ,"PLAYER_B_GRIP_BOOSTER"
         ,"RESET"       // 40
         ,"UNDEFINED"   // 41
         ,"RANDOM"      // 42
+        ,"SAVE_STATE"  // 43
+        ,"LOAD_STATE"  // 44
+        ,"SYSTEM_RESET" // 45
+        ,"SELECT"      // 46
     };
-    assert (a >= 0 && a <= 42);
+    assert (a >= 0 && a <= 46);
     return tmp_action_to_string[a];
 }

@@ -177,7 +177,7 @@ void ALEState::applyActionPaddles(Event* event, int player_a_action, int player_
         case PLAYER_A_DOWNRIGHT: 
         case PLAYER_A_UPRIGHTFIRE: 
         case PLAYER_A_DOWNRIGHTFIRE: 
-          delta_left = -PADDLE_DELTA;   
+            delta_left = -PADDLE_DELTA;
             break; 
             
         case PLAYER_A_LEFT:
@@ -186,7 +186,7 @@ void ALEState::applyActionPaddles(Event* event, int player_a_action, int player_
         case PLAYER_A_DOWNLEFT: 
         case PLAYER_A_UPLEFTFIRE: 
         case PLAYER_A_DOWNLEFTFIRE: 
-      delta_left = PADDLE_DELTA;
+            delta_left = PADDLE_DELTA;
             break;
     default:
       delta_left = 0;
@@ -200,7 +200,7 @@ void ALEState::applyActionPaddles(Event* event, int player_a_action, int player_
         case PLAYER_B_DOWNRIGHT: 
         case PLAYER_B_UPRIGHTFIRE: 
         case PLAYER_B_DOWNRIGHTFIRE: 
-          delta_right = -PADDLE_DELTA;
+            delta_right = -PADDLE_DELTA;
             break; 
             
         case PLAYER_B_LEFT:
@@ -209,7 +209,7 @@ void ALEState::applyActionPaddles(Event* event, int player_a_action, int player_
         case PLAYER_B_DOWNLEFT: 
         case PLAYER_B_UPLEFTFIRE: 
         case PLAYER_B_DOWNLEFTFIRE: 
-      delta_right = PADDLE_DELTA;
+            delta_right = PADDLE_DELTA;
             break;
     default:
       delta_right = 0;
@@ -236,6 +236,12 @@ void ALEState::applyActionPaddles(Event* event, int player_a_action, int player_
         case PLAYER_A_DOWNLEFTFIRE: 
             event->set(Event::PaddleZeroFire, 1);
             break;
+        case PLAYER_A_GRIP_TRIGGER:
+            event->set(Event::BoosterGripZeroTrigger, 1);
+            break;
+        case PLAYER_A_GRIP_BOOSTER:
+            event->set(Event::BoosterGripZeroBooster, 1);
+            break;
     default:
       // Nothing
       break;
@@ -252,6 +258,12 @@ void ALEState::applyActionPaddles(Event* event, int player_a_action, int player_
         case PLAYER_B_DOWNRIGHTFIRE: 
         case PLAYER_B_DOWNLEFTFIRE: 
             event->set(Event::PaddleOneFire, 1);
+            break;
+        case PLAYER_B_GRIP_TRIGGER:
+            event->set(Event::BoosterGripOneTrigger, 1);
+            break;
+        case PLAYER_B_GRIP_BOOSTER:
+            event->set(Event::BoosterGripOneBooster, 1);
             break;
     default:
       // Nothing
@@ -349,18 +361,31 @@ void ALEState::setActionJoysticks(Event* event, int player_a_action, int player_
           event->set(Event::JoystickZeroDown, 1);
           event->set(Event::JoystickZeroLeft, 1);
           event->set(Event::JoystickZeroFire, 1);
-          break; 
+          break;
+
+      case PLAYER_A_GRIP_TRIGGER:
+          event->set(Event::BoosterGripZeroTrigger, 1);
+          break;
+
+      case PLAYER_A_GRIP_BOOSTER:
+          event->set(Event::BoosterGripZeroBooster, 1);
+          break;
+
       case RESET:
           event->set(Event::ConsoleReset, 1);
           break;
+
+      case SELECT:
+          event->set(Event::ConsoleSelect, 1);
+          break;
+
       default: 
           ale::Logger::Error << "Invalid Player A Action: " << player_a_action;
-          exit(-1); 
-      
+          exit(-1);
   }
 
   switch(player_b_action) {
-  case PLAYER_B_NOOP: 
+      case PLAYER_B_NOOP:
           break; 
           
       case PLAYER_B_FIRE: 
@@ -445,11 +470,25 @@ void ALEState::setActionJoysticks(Event* event, int player_a_action, int player_
           event->set(Event::JoystickOneDown, 1);
           event->set(Event::JoystickOneLeft, 1);
           event->set(Event::JoystickOneFire, 1);
-          break; 
+          break;
+
+      case PLAYER_B_GRIP_TRIGGER:
+          event->set(Event::BoosterGripOneTrigger, 1);
+          break;
+
+      case PLAYER_B_GRIP_BOOSTER:
+          event->set(Event::BoosterGripOneBooster, 1);
+          break;
+
       case RESET:
           event->set(Event::ConsoleReset, 1);
           ale::Logger::Info << "Sending Reset..." << endl;
           break;
+
+      case SELECT:
+          event->set(Event::ConsoleSelect, 1);
+          break;
+
       default: 
           ale::Logger::Error << "Invalid Player B Action: " << player_b_action << endl;
           exit(-1); 
@@ -461,7 +500,11 @@ void ALEState::setActionJoysticks(Event* event, int player_a_action, int player_
     Unpresses all control-relavant keys
  * ***************************************************************************/
 void ALEState::resetKeys(Event* event) {
+    // reset console state
     event->set(Event::ConsoleReset, 0);
+    event->set(Event::ConsoleSelect, 0);
+
+    // also reset joystick state
     event->set(Event::JoystickZeroFire, 0);
     event->set(Event::JoystickZeroUp, 0);
     event->set(Event::JoystickZeroDown, 0);
@@ -472,10 +515,16 @@ void ALEState::resetKeys(Event* event) {
     event->set(Event::JoystickOneDown, 0);
     event->set(Event::JoystickOneRight, 0);
     event->set(Event::JoystickOneLeft, 0);
-    
+
     // also reset paddle fire
     event->set(Event::PaddleZeroFire, 0);
     event->set(Event::PaddleOneFire, 0);
+
+    // also reset booster state
+    event->set(Event::BoosterGripZeroTrigger, 0);
+    event->set(Event::BoosterGripZeroBooster, 0);
+    event->set(Event::BoosterGripOneTrigger, 0);
+    event->set(Event::BoosterGripOneBooster, 0);
 }
 
 bool ALEState::equals(ALEState &rhs) {
