@@ -185,3 +185,4 @@ RomSettings *buildRomRLWrapper(const std::string &rom) {
     return NULL;
 }
 
+//TODO: Do we need swap ports for 2player?
