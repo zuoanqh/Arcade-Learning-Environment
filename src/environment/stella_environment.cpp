@@ -131,7 +131,7 @@ void StellaEnvironment::noopIllegalActions(Action & player_a_action, Action & pl
   if (player_b_action < (Action)PLAYER_B_MAX &&
         !m_settings->isLegalB(player_b_action)) {
     player_b_action = (Action)PLAYER_B_NOOP;
-  }//TODO: By default a 2 player rom's isLegalB should check if that action is legal for A instead
+  }
   else if (player_b_action == RESET) 
     player_b_action = (Action)PLAYER_B_NOOP;
 }

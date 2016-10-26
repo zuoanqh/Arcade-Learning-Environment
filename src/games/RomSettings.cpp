@@ -21,9 +21,14 @@ bool RomSettings::isLegal(const Action& a) const {
   return true;
 }
 
+bool RomSettings::isLegalB(const Action& a) const {
+  return isLegal((int)a - PLAYER_A_MAX);
+}
+
+
 ActionVect RomSettings::getMinimalActionSet() {
   ActionVect actions;
-  for (int a = 0; a < PLAYER_B_NOOP; a++) {
+  for (int a = 0; a < PLAYER_A_MAX; a++) {
     if (isMinimal((Action)a) && isLegal((Action)a)) {
       actions.push_back((Action)a);
     }
@@ -31,9 +36,13 @@ ActionVect RomSettings::getMinimalActionSet() {
   return actions;
 }
 
+ActionVect RomSettings::getMinimalActionSetB() {
+  return ActionVect();
+}
+
 ActionVect RomSettings::getAllActions() {
   ActionVect actions;
-  for (int a = 0; a < PLAYER_B_NOOP; a++) {
+  for (int a = 0; a < PLAYER_A_MAX; a++) {
     if (isLegal((Action)a)) {
       actions.push_back((Action)a);
     }
@@ -41,6 +50,10 @@ ActionVect RomSettings::getAllActions() {
   return actions;
 }
 
+ActionVect RomSettings::getAllActionsB() {
+  return ActionVect();
+}
+
 ActionVect RomSettings::getStartingActions() {
-    return ActionVect();
+  return ActionVect();
 }

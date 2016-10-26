@@ -53,6 +53,9 @@ struct RomSettings {
     // get the most recently observed reward
     virtual reward_t getReward() const = 0;
 
+    // get the most recently observed reward for player 2
+    virtual reward_t getRewardB() const = 0;
+
     // the rom-name
     virtual const char *rom() const = 0;
 
@@ -61,6 +64,9 @@ struct RomSettings {
 
     // is an action part of the minimal set?
     virtual bool isMinimal(const Action &a) const = 0;
+
+    // is an action part of the minimal set for player 2?
+    virtual bool isMinimalB(const Action &a) const = 0;
 
     // process the latest information from ALE
     virtual void step(const System &system) = 0;
@@ -74,16 +80,29 @@ struct RomSettings {
     // is an action legal (default: yes)
     virtual bool isLegal(const Action &a) const;
 
+    // is an action legal for player 2?
+    virtual bool isLegalB(const Action &a) const;
+
     // Remaining lives.
     virtual const int lives() { return isTerminal() ? 0 : 1; }
+
+    // Remaining lives of player 2.
+    virtual const int livesB() { return isTerminal() ? 0 : 1; }
 
     // Returns a restricted (minimal) set of actions. If not overriden, this is all actions.
     virtual ActionVect getMinimalActionSet();
 
+    // Returns a restricted (minimal) set of actions for player 2.
+    virtual ActionVect getMinimalActionSetB();
+
     // Returns the set of all legal actions
     ActionVect getAllActions();
 
-    // Returns a list of actions that are required to start the game.
+    // Returns the set of all legal actions for player 2.
+    ActionVect getAllActionsB();
+
+    // Returns a list of actions to perform before starting the game
+    // This can be used for entering 2 player mode or change difficulty, for example
     // By default this is an empty list.
     virtual ActionVect getStartingActions();
 };
