@@ -17,6 +17,9 @@ extern "C" {
   void setFloat(ALEInterface *ale,const char *key,float value){ale->setFloat(key,value);}
   void loadROM(ALEInterface *ale,const char *rom_file){ale->loadROM(rom_file);}
   int act(ALEInterface *ale,int action){return ale->act((Action)action);}
+  int act2(ALEInterface *ale,int action,int actionB){return ale->act2((Action)action, (Action)actionB);}
+  int getRewardA(){return ale->getRewardA();}
+  int getRewardB(){return ale->getRewardB();}
   bool game_over(ALEInterface *ale){return ale->game_over();}
   void reset_game(ALEInterface *ale){ale->reset_game();}
   void getLegalActionSet(ALEInterface *ale,int *actions){
@@ -25,7 +28,20 @@ extern "C" {
       actions[i] = action_vect[i];
     }
   }
+  void getLegalActionSetB(ALEInterface *ale,int *actions){
+    ActionVect action_vect = ale->getLegalActionSetB();
+    for(unsigned int i = 0;i < ale->getLegalActionSetB().size();i++){
+      actions[i] = action_vect[i];
+    }
+  }
   int getLegalActionSize(ALEInterface *ale){return ale->getLegalActionSet().size();}
+  int getLegalActionSizeB(ALEInterface *ale){return ale->getLegalActionSetB().size();}
+  void getMinimalActionSet(ALEInterface *ale,int *actions){
+    ActionVect action_vect = ale->getMinimalActionSet();
+    for(unsigned int i = 0;i < ale->getMinimalActionSet().size();i++){
+      actions[i] = action_vect[i];
+    }
+  }
   void getMinimalActionSet(ALEInterface *ale,int *actions){
     ActionVect action_vect = ale->getMinimalActionSet();
     for(unsigned int i = 0;i < ale->getMinimalActionSet().size();i++){
@@ -33,8 +49,10 @@ extern "C" {
     }
   }
   int getMinimalActionSize(ALEInterface *ale){return ale->getMinimalActionSet().size();}
+  int getMinimalActionSizeB(ALEInterface *ale){return ale->getMinimalActionSetB().size();}
   int getFrameNumber(ALEInterface *ale){return ale->getFrameNumber();}
   int lives(ALEInterface *ale){return ale->lives();}
+  int livesB(ALEInterface *ale){return ale->livesB();}
   int getEpisodeFrameNumber(ALEInterface *ale){return ale->getEpisodeFrameNumber();}
   void getScreen(ALEInterface *ale,unsigned char *screen_data){
     int w = ale->getScreen().width();

@@ -39,7 +39,7 @@ std::string ALEInterface::welcomeMessage() {
   oss << "A.L.E: Arcade Learning Environment (version "
       << Version << ")\n"
       << "[Powered by Stella]\n"
-      << "Use -help for help screen.";
+      << "Use -help for help screen, meow!";
   return oss.str();
 }
 
@@ -200,21 +200,61 @@ const int ALEInterface::lives() {
   return romSettings->lives();
 }
 
+// The remaining number of lives for player 2.
+const int ALEInterface::livesB() {
+  if (!romSettings.get()){
+    throw std::runtime_error("ROM not set");
+  }
+  return romSettings->livesB();
+}
+
+
 // Applies an action to the game and returns the reward. It is the
 // user's responsibility to check if the game has ended and reset
 // when necessary - this method will keep pressing buttons on the
 // game over screen.
 reward_t ALEInterface::act(Action action) {
-  reward_t reward = environment->act(action, PLAYER_B_NOOP);
+  environment->act(action, PLAYER_B_NOOP);
+
+  rewardA = environment->getRewardA();
+  rewardB = environment->getRewardB();
+
   if (theOSystem->p_display_screen != NULL) {
     theOSystem->p_display_screen->display_screen();
     while (theOSystem->p_display_screen->manual_control_engaged()) {
       Action user_action = theOSystem->p_display_screen->getUserAction();
-      reward += environment->act(user_action, PLAYER_B_NOOP);
+      environment->act(user_action, PLAYER_B_NOOP);
+      rewardA += environment->getRewardA();
+      rewardB += environment->getRewardB();
+
       theOSystem->p_display_screen->display_screen();
     }
   }
-  return reward;
+  return rewardA;
+}
+
+// Applies an action to the game and returns both reward. It is the
+// user's responsibility to check if the game has ended and reset
+// when necessary - this method will keep pressing buttons on the
+// game over screen.
+reward_t ALEInterface::act2(Action action, Action actionB) {
+  reward_t reward = environment->act(action, actionB);
+
+  rewardA = environment->getRewardA();
+  rewardB = environment->getRewardB();
+
+  if (theOSystem->p_display_screen != NULL) {
+    theOSystem->p_display_screen->display_screen();
+    while (theOSystem->p_display_screen->manual_control_engaged()) {
+      Action user_action = theOSystem->p_display_screen->getUserAction();
+      environment->act(user_action, actionB);
+      rewardA += environment->getRewardA();
+      rewardB += environment->getRewardB();
+
+      theOSystem->p_display_screen->display_screen();
+    }
+  }
+  return rewardA;
 }
 
 // Returns the vector of legal actions. This should be called only

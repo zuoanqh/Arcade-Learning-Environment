@@ -81,25 +81,47 @@ public:
   // game over screen.
   reward_t act(Action action);
 
+  // Applies action for both players to the game and returns the
+  // reward. It is the user's responsibility to check if the game
+  // has ended and reset when necessary - this method will keep
+  // pressing buttons on the game over screen.
+  reward_t act2(Action action, Action action);
+
   // Indicates if the game has ended.
   bool game_over() const;
 
   // Resets the game, but not the full system.
   void reset_game();
 
-  // Returns the vector of legal actions. This should be called only
+  // Returns the vector of legal actions for player 1. This should be called only
   // after the rom is loaded.
   ActionVect getLegalActionSet();
 
+  // Returns the vector of legal actions for player 2. This should be called only
+  // after the rom is loaded.
+  ActionVect getLegalActionSetB();
+
   // Returns the vector of the minimal set of actions needed to play
-  // the game.
+  // the game for player 1.
   ActionVect getMinimalActionSet();
+
+  // Returns the vector of the minimal set of actions needed to play
+  // the game for player 2.
+  ActionVect getMinimalActionSetB();
 
   // Returns the frame number since the loading of the ROM
   int getFrameNumber();
 
-  // The remaining number of lives.
+  // The remaining number of lives for player 1.
   const int lives();
+
+  // The remaining number of lives for player 2.
+  const int livesB();
+
+  // reward player 1 received
+  const reward_t getRewardA() { return rewardA; }
+  // reward player 2 received
+  const reward_t getRewardB() { return rewardB; }
 
   // Returns the frame number since the start of the current episode
   int getEpisodeFrameNumber() const;
@@ -164,6 +186,9 @@ public:
                             std::auto_ptr<Settings> &theSettings);
   static void loadSettings(const std::string& romfile,
                            std::auto_ptr<OSystem> &theOSystem);
+
+ private:
+  reward_t rewardA, rewardB;
 };
 
 #endif

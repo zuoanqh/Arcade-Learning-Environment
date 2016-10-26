@@ -78,6 +78,12 @@ class StellaEnvironment {
     int getFrameNumber() const { return m_state.getFrameNumber(); }
     int getEpisodeFrameNumber() const { return m_state.getEpisodeFrameNumber(); }
 
+    int getRewardA() const { return rewardA; }
+    int getRewardB() const { return rewardB; }
+
+    int getStepRewardA() const { return m_settings.getReward(); }
+    int getStepRewardB() const { return m_settings.getRewardB(); }
+
   private:
     /** This applies an action exactly one time step. Helper function to act(). */
     reward_t oneStepAct(Action player_a_action, Action player_b_action);
@@ -105,6 +111,8 @@ class StellaEnvironment {
     ALEState m_state; // Current environment state    
     ALEScreen m_screen; // The current ALE screen (possibly colour-averaged)
     ALERAM m_ram; // The current ALE RAM
+
+    reward_t rewardA, rewardB;
 
     bool m_use_paddles;  // Whether this game uses paddles
     

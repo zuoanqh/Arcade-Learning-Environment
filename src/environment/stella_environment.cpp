@@ -137,11 +137,12 @@ void StellaEnvironment::noopIllegalActions(Action & player_a_action, Action & pl
 }
 
 reward_t StellaEnvironment::act(Action player_a_action, Action player_b_action) {
-  
-  // Total reward received as we repeat the action
-  reward_t sum_rewards = 0;
 
   Random& rng = m_osystem->rng();
+
+  // clear reward. No, I don't like this too.
+  rewardA = 0;
+  rewardB = 0;
 
   // Apply the same action for a given number of times... note that act() will refuse to emulate 
   //  past the terminal state
@@ -163,10 +164,11 @@ reward_t StellaEnvironment::act(Action player_a_action, Action player_b_action) 
         m_screen_exporter->saveNext(m_screen);
 
     // Use the stored actions, which may or may not have changed this frame
-    sum_rewards += oneStepAct(m_player_a_action, m_player_b_action);
+    rewardA += oneStepAct(m_player_a_action, m_player_b_action);
+    rewardB += m_settings.getRewardB();
   }
 
-  return sum_rewards;
+  return rewardA;
 }
 
 /** Applies the given actions (e.g. updating paddle positions when the paddle is used)
