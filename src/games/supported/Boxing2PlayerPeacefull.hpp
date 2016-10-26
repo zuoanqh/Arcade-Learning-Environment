@@ -26,19 +26,19 @@
  *
  * *****************************************************************************
  */
-#ifndef __BOXING_HPP__
-#define __BOXING_HPP__
+#ifndef __BOXINGPEACEFULL_HPP__
+#define __BOXINGPEACEFULL_HPP__
 
 #include "../RomSettings.hpp"
 
 namespace ale {
 
 /* RL wrapper for Boxing settings */
-class Boxing2PlayerPeacefulSettings : public RomSettings {
+class Boxing2PlayerPeacefullSettings : public RomSettings {
 
     public:
 
-        Boxing2PlayerPeacefulSettings();
+        Boxing2PlayerPeacefullSettings();
 
         // reset
         void reset();
@@ -51,7 +51,7 @@ class Boxing2PlayerPeacefulSettings : public RomSettings {
 		reward_t getRewardB() const;
 
         // the rom-name
-        const char* rom() const { return "Boxing2PlayerPeaceful"; }
+        const char* rom() const { return "Boxing2PlayerPeacefull"; }
 
         // create a new instance of the rom
         RomSettings* clone() const;
@@ -90,5 +90,5 @@ class Boxing2PlayerPeacefulSettings : public RomSettings {
 
 } // namespace ale
 
-#endif // __BOXING_HPP__
+#endif // __BOXINGPEACEFULL_HPP__
 

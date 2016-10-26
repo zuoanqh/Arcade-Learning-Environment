@@ -89,6 +89,11 @@
 #include "supported/YarsRevenge.hpp"
 #include "supported/Zaxxon.hpp"
 
+#include "supported/Boxing2Player.hpp"
+#include "supported/Boxing2PlayerPeacefull.hpp"
+#include "supported/Boxing2PlayerImbalanced.hpp"
+#include "supported/Pong2Player.hpp"
+#include "supported/Pong2PlayerVS.hpp"
 
 /* list of supported games */
 static const RomSettings *roms[]  = {
@@ -166,6 +171,12 @@ static const RomSettings *roms[]  = {
     new WizardOfWorSettings(),
     new YarsRevengeSettings(),
     new ZaxxonSettings(),
+	
+	new Boxing2PlayerSettings(),
+    new Boxing2PlayerPeacefullSettings(),
+    new Boxing2PlayerImbalancedSettings(),
+    new Pong2PlayerSettings(),
+    new Pong2PlayerVSSettings(),
 };
 
 
