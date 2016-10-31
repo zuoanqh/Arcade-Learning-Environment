@@ -26,8 +26,8 @@
  *
  * *****************************************************************************
  */
-#ifndef __BOXING_HPP__
-#define __BOXING_HPP__
+#ifndef __BOXING2P_HPP__
+#define __BOXING2P_HPP__
 
 #include "../RomSettings.hpp"
 
@@ -90,5 +90,5 @@ class Boxing2PlayerSettings : public RomSettings {
 
 } // namespace ale
 
-#endif // __BOXING_HPP__
+#endif // __BOXING2P_HPP__
 

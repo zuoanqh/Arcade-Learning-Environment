@@ -171,7 +171,6 @@ static const RomSettings *roms[]  = {
     new WizardOfWorSettings(),
     new YarsRevengeSettings(),
     new ZaxxonSettings(),
-	
 	new Boxing2PlayerSettings(),
     new Boxing2PlayerPeacefullSettings(),
     new Boxing2PlayerImbalancedSettings(),
