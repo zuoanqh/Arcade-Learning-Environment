@@ -81,8 +81,8 @@ class StellaEnvironment {
     int getRewardA() const { return rewardA; }
     int getRewardB() const { return rewardB; }
 
-    int getStepRewardA() const { return m_settings.getReward(); }
-    int getStepRewardB() const { return m_settings.getRewardB(); }
+    int getStepRewardA() const { return m_settings->getReward(); }
+    int getStepRewardB() const { return m_settings->getRewardB(); }
 
   private:
     /** This applies an action exactly one time step. Helper function to act(). */
