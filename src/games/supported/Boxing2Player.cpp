@@ -31,9 +31,6 @@
 #include "../RomUtils.hpp"
 #include <iostream>
 
-using namespace ale;
-
-
 Boxing2PlayerSettings::Boxing2PlayerSettings() {
 
     reset();

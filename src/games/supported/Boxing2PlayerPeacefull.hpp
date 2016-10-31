@@ -30,9 +30,6 @@
 #define __BOXINGPEACEFULL_HPP__
 
 #include "../RomSettings.hpp"
-
-namespace ale {
-
 /* RL wrapper for Boxing settings */
 class Boxing2PlayerPeacefullSettings : public RomSettings {
 
@@ -87,8 +84,6 @@ class Boxing2PlayerPeacefullSettings : public RomSettings {
         reward_t m_scoreB;
 		
 };
-
-} // namespace ale
 
 #endif // __BOXINGPEACEFULL_HPP__
 

@@ -31,8 +31,6 @@
 
 #include "../RomSettings.hpp"
 
-namespace ale {
-
 /* RL wrapper for Boxing settings */
 class Boxing2PlayerSettings : public RomSettings {
 
@@ -87,8 +85,6 @@ class Boxing2PlayerSettings : public RomSettings {
         reward_t m_scoreB;
 		
 };
-
-} // namespace ale
 
 #endif // __BOXING2P_HPP__
 

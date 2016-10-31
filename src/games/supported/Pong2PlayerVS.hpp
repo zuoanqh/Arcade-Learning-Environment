@@ -31,8 +31,6 @@
 
 #include "../RomSettings.hpp"
 
-namespace ale {
-
 // RL wrapper for SpaceInvaders
 class Pong2PlayerVSSettings : public RomSettings {
 
@@ -94,8 +92,6 @@ class Pong2PlayerVSSettings : public RomSettings {
         bool crash;
         bool serving;
 };
-
-} // namespace ale
 
 #endif // __Pong2PlayerVS_HPP__
 
