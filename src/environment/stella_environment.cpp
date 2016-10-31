@@ -165,7 +165,7 @@ reward_t StellaEnvironment::act(Action player_a_action, Action player_b_action) 
 
     // Use the stored actions, which may or may not have changed this frame
     rewardA += oneStepAct(m_player_a_action, m_player_b_action);
-    rewardB += m_settings.getRewardB();
+    rewardB += m_settings->getRewardB();
   }
 
   return rewardA;

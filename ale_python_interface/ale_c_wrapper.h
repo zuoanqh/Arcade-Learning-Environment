@@ -18,8 +18,8 @@ extern "C" {
   void loadROM(ALEInterface *ale,const char *rom_file){ale->loadROM(rom_file);}
   int act(ALEInterface *ale,int action){return ale->act((Action)action);}
   int act2(ALEInterface *ale,int action,int actionB){return ale->act2((Action)action, (Action)actionB);}
-  int getRewardA(){return ale->getRewardA();}
-  int getRewardB(){return ale->getRewardB();}
+  int getRewardA(ALEInterface *ale){return ale->getRewardA();}
+  int getRewardB(ALEInterface *ale){return ale->getRewardB();}
   bool game_over(ALEInterface *ale){return ale->game_over();}
   void reset_game(ALEInterface *ale){ale->reset_game();}
   void getLegalActionSet(ALEInterface *ale,int *actions){

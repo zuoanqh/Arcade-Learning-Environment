@@ -22,7 +22,7 @@ bool RomSettings::isLegal(const Action& a) const {
 }
 
 bool RomSettings::isLegalB(const Action& a) const {
-  return isLegal(((int)a) - PLAYER_A_MAX);
+  return isLegal(Action(((int)a) - PLAYER_A_MAX));
 }
 
 
