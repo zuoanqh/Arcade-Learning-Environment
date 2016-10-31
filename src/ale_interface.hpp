@@ -119,9 +119,9 @@ public:
   const int livesB();
 
   // reward player 1 received
-  const reward_t getRewardA() { return rewardA; }
+  reward_t getRewardA() { return rewardA; }
   // reward player 2 received
-  const reward_t getRewardB() { return rewardB; }
+  reward_t getRewardB() { return rewardB; }
 
   // Returns the frame number since the start of the current episode
   int getEpisodeFrameNumber() const;

@@ -42,9 +42,9 @@ extern "C" {
       actions[i] = action_vect[i];
     }
   }
-  void getMinimalActionSet(ALEInterface *ale,int *actions){
-    ActionVect action_vect = ale->getMinimalActionSet();
-    for(unsigned int i = 0;i < ale->getMinimalActionSet().size();i++){
+  void getMinimalActionSetB(ALEInterface *ale,int *actions){
+    ActionVect action_vect = ale->getMinimalActionSetB();
+    for(unsigned int i = 0;i < ale->getMinimalActionSetB().size();i++){
       actions[i] = action_vect[i];
     }
   }
