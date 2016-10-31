@@ -57,7 +57,7 @@ void Boxing2PlayerPeacefullSettings::step(const System& system) {
     if (readRam(&system, 0x92) == 0xC0) my_score   = 100;
     if (readRam(&system, 0x93) == 0xC0) oppt_score = 100;
     m_reward = my_score - m_score;
-	m_rewardB = my_scoreB - opptscore;//punishes getting points
+	m_rewardB = m_scoreB - oppt_score;//punishes getting points
     m_score = my_score;
 	m_scoreB = oppt_score;
 
