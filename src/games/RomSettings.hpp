@@ -54,7 +54,7 @@ struct RomSettings {
     virtual reward_t getReward() const = 0;
 
     // get the most recently observed reward for player 2
-    reward_t getRewardB() const = 0;
+    reward_t getRewardB() {return 0;}
 
     // the rom-name
     virtual const char *rom() const = 0;
@@ -66,7 +66,7 @@ struct RomSettings {
     virtual bool isMinimal(const Action &a) const = 0;
 
     // is an action part of the minimal set for player 2?
-    bool isMinimalB(const Action &a) const = 0;
+    bool isMinimalB(const Action &a) {return 0;}
 
     // process the latest information from ALE
     virtual void step(const System &system) = 0;
