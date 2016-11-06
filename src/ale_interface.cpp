@@ -266,6 +266,15 @@ ActionVect ALEInterface::getLegalActionSet() {
   return romSettings->getAllActions();
 }
 
+// Returns the vector of legal actions. This should be called only
+// after the rom is loaded.
+ActionVect ALEInterface::getLegalActionSetB() {
+  if (!romSettings.get()){
+    throw std::runtime_error("ROM not set");
+  }
+  return romSettings->getAllActionsB();
+}
+
 // Returns the vector of the minimal set of actions needed to play
 // the game.
 ActionVect ALEInterface::getMinimalActionSet() {
@@ -273,6 +282,15 @@ ActionVect ALEInterface::getMinimalActionSet() {
     throw std::runtime_error("ROM not set");
   }
   return romSettings->getMinimalActionSet();
+}
+
+// Returns the vector of the minimal set of actions needed to play
+// the game.
+ActionVect ALEInterface::getMinimalActionSetB() {
+  if (!romSettings.get()){
+    throw std::runtime_error("ROM not set");
+  }
+  return romSettings->getMinimalActionSetB();
 }
 
 // Returns the frame number since the loading of the ROM
